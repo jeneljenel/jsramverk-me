@@ -1,0 +1,68 @@
+form {
+    overflow: hidden;
+}
+
+
+.input {
+    font-size: 1.5rem;
+    display: block;
+    border: 1px solid #c8ccce;
+    border-radius: 0.2rem;
+    padding: 0.6rem 0.6rem;
+    box-sizing: border-box;
+    display: inline-block;
+    /* width: 80%; */
+    /* margin-bottom: 1rem; */
+};
+
+
+.input-label {
+    display: block;
+    margin-top: 1.2rem;
+    width: 100%;
+}
+
+.input:focus {
+    outline: 2px solid #f4ceff;
+
+}
+
+.input-field:valid {
+    background-color: #d3f8d3;
+}
+
+.input-field:invalid {
+    outline: 2px solid #ff471a;
+}
+
+.field-error {
+    color: rgba(255, 0, 0, 0.925);
+    font-style: italic;
+    font-size: 0.8rem;
+    padding-left: 0.6rem;
+}
+
+.field-error-form {
+    color: rgba(255, 0, 0, 0.925);
+    background-color: #f34a2038;
+    font-style: italic;
+    font-size: 0.8rem
+}
+
+.field-psw-info {
+    color: rgb(29, 28, 28);
+    font-size: 0.8rem
+}
+
+
+.input-textarea {
+    font-size: 1.5rem;
+    display: block;
+    border: 1px solid #c8ccce;
+    border-radius: 0.2rem;
+    padding: 0.6rem 0.6rem;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80%;
+    min-height: 20rem;
+}
