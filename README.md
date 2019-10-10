@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+THIS IS SECOND REPO. Messed the old one up.
+For old commits >> [https://github.com/jeneljenel/jsramverk](old repo)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
