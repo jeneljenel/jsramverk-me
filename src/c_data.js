@@ -1,11 +1,11 @@
 const port = {
     'localpath': '1337',
     'reactorpath': '3000',
-    'wwwpath': '8333'
+    'onserver': '8333'
 };
 
 const c_data = {
-    'port': port['localpath']
+    'port': port['onserver']
 };
 
 export default c_data;

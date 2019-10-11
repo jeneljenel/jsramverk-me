@@ -13,7 +13,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "rsync -av ./build/* deploy@159.65.27.43:/var/www/jeneljenel.me/html "
   },
   "eslintConfig": {
     "extends": "react-app"
