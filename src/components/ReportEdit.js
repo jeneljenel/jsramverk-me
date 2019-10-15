@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-
-
 import Auth from './Auth';
-import ReportEdit from './ReportEdit';
 
 import c_data from '../c_data.js'; //SET localhost: xxxx
-
 
 class Report extends Component {
     constructor(props) {

@@ -27,19 +27,27 @@ class Reports extends Component {
 
 
   getReports() {
-      let parent = this;
-      let port = c_data['port'];
-      fetch("http://localhost:" + port + "/reports")
-          .then(res => {
-            res.json().then(res => {
-            // console.log("api res: "  , res);
-              parent.setState({
-                apiResponse: res
-                })
+    let parent = this;
+    let port = c_data['port'];
+    let url = 'http://localhost:' + port + '/reports';
+
+    const headers = {
+      'Content-type': 'application/json',
+    }
+
+    fetch(url, {
+      headers: headers
+    })
+        .then(res => {
+          res.json().then(res => {
+          // console.log("api res: "  , res);
+            parent.setState({
+              apiResponse: res
               })
             })
-      .catch(error => this.setState({ error, isLoading: false }));
-    }
+          })
+    .catch(error => this.setState({ error, isLoading: false }));
+  }
 
   //DO wen render the page - get the reports
   UNSAFE_componentWillMount() {

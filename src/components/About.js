@@ -13,7 +13,16 @@ class Hello extends Component {
   callAPI() {
     let parent = this;
     let port = c_data['port']
-    fetch("http://localhost:" + port)
+    let url = 'http://localhost:' + port;
+    console.log(url);
+
+    const headers = {
+      'Content-type': 'application/json',
+    }
+
+    fetch("http://localhost:" + port, {
+      headers: headers
+    })
       .then(res => {
         res.json().then(res => {
           parent.setState({

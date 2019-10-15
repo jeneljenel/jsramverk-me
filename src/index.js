@@ -16,7 +16,8 @@ import Login from './components/Login';
 import Notfound from './notfound';
 
 
-import './index.css';
+import './style/index.css';
+import './style/Menu.css';
 
 const routing = (
     <Router>

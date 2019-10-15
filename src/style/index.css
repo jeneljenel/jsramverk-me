@@ -56,6 +56,23 @@ h3 {
     font-size: 14px;
 }
 
+/* LINKS */
+a {
+  color: rgb(7, 85, 68);
+  text-decoration: none;
+  padding: 0.5rem;
+
+}
+
+a:hover {
+  background-color: rgba(209, 89, 107, 0.315);
+  text-decoration: line-through;
+}
+
+a:visited {
+  color: rgb(7, 85, 68);
+  text-decoration: none;
+}
 
 /* CONTAINER */
 .container {
@@ -64,12 +81,3 @@ h3 {
     min-height: 24rem;
 }
 
-.menu ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    display: inline;
-    margin: 12px;
-}

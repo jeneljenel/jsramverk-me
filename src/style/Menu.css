@@ -1,3 +1,10 @@
-.option-menu {
-    background-color: aqua;
-};
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    display: inline;
+    margin: 12px;
+}

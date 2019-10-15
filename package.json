@@ -1,5 +1,6 @@
 {
   "name": "me",
+  "short_name": "me-app",  
   "version": "0.1.0",
   "private": true,
   "dependencies": {

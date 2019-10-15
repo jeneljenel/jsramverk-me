@@ -55,7 +55,7 @@ class Login extends Component {
 
                         this.Auth.setToken(info.token)
                     })
-                    // window.location = '/reports';
+                    window.location = '/reports';
 
 
                 } else {

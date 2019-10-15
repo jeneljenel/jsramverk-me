@@ -59,9 +59,10 @@ class Report extends Component {
     if (this.Auth.loggedIn()) {
       console.log("du är inloggad!")
       return (
-        <li>
-          <Link to={`${match.url}/edit`}>Edit</Link>
-        </li>
+        
+          <Link to={`${match.url}/edit`}>
+            <button type="button">Edit</button>
+          </Link>
       );
     }
   }

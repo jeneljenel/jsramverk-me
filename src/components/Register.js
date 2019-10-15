@@ -22,22 +22,21 @@ class Register extends Component {
 
     handleSubmit = user => {
         let port = c_data['port'];
+        let url = 'http://localhost:' + port + '/register'
 
-        // console.log(user.name);
-        // console.log(user);
+        const headers = {
+            'Content-type': 'application/json',
+        }
 
-        // this.setState({ newUser: [...this.state.newUser, user] });
         this.setState({ newUser: [...this.state.newUser, user] }, () => {
             console.log(this.state.newUser);
             JSON.stringify(this.state.newUser);
             console.log(this.state.newUser[0].name);
 
-            fetch('http://localhost:' + port + '/register', {
+            fetch(url, {
                 method: "POST",
                 body: JSON.stringify(this.state.newUser[0]),
-                headers: {
-                    'Content-type': 'application/json'
-                }
+                headers: headers
             })
                 .then((result) => {
                     console.log(result);

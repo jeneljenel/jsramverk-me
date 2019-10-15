@@ -86,12 +86,9 @@ class ReportAdmin extends Component {
         const { errors } = this.state;
         // const { report } = this.props;
 
-        console.log(this.props);
-        console.log(this.state);
-
         return (
             <div>
-                <h1>Administrate reports </h1>
+                <h1>Add a new report </h1>
                 <br />
                 <form onSubmit={this.handleSubmit}>
                     <span className="field-error-form">{errors["form"]}</span>
@@ -111,7 +108,7 @@ class ReportAdmin extends Component {
                             />
                         <br />
                         <br />
-                        <button type="Submit">OK </button>
+                        <button type="Submit">Add the report! </button>
                 </form>
                
             </div>
