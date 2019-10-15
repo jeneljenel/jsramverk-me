@@ -9,7 +9,7 @@ class Form extends Component {
         super(props);
 
         this.initialState = {
-            fields: {
+            user: {
                 name: '',
                 email: '',
                 birthday: '',
@@ -20,32 +20,32 @@ class Form extends Component {
         };
 
         this.state = this.initialState;
-        this.showPassword = this.showPassword.bind(this);
+        // this.showPassword = this.showPassword.bind(this);
     };
 
 
-    handleChange = (field, event) => {
-        let fields = this.state.fields;
-        if (field === "birthday") {
+    handleChange = (value, event) => {
+        let user = this.state.user;
+        if (value === "birthday") {
             console.log(event);
-            console.log(field);
-            fields[field] = event;
-            this.setState({ fields });
+            console.log(value);
+            user[value] = event;
+            this.setState({ user });
 
         } else {
-            console.log(field);
-            fields[field] = event.target.value;
-            this.setState({ fields });
+            console.log(value);
+            user[value] = event.target.value;
+            this.setState({ user });
         }
 
     };
 
     handleValidation = () => {
-        const {fields, errors} = this.state;
+        const {user, errors} = this.state;
         let formIsValid = true;
 
-        for (var value in fields) {
-            let input = fields[value];
+        for (var value in user) {
+            let input = user[value];
 
             if (!input) {
                 console.log("något är tomt och det är " + value)
@@ -56,17 +56,17 @@ class Form extends Component {
                 
 
         //email
-        if (typeof fields["email"] !== "undefined") {
-            let lastAtPos = fields["email"].lastIndexOf('@');
-            let lastDotPos = fields["email"].lastIndexOf('.');
-            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') === -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
+        if (typeof user["email"] !== "undefined") {
+            let lastAtPos = user["email"].lastIndexOf('@');
+            let lastDotPos = user["email"].lastIndexOf('.');
+            if (!(lastAtPos < lastDotPos && lastAtPos > 0 && user["email"].indexOf('@@') === -1 && lastDotPos > 2 && (user["email"].length - lastDotPos) > 2)) {
                 formIsValid = false;
                 errors["email"] = "Email is not valid";
             };
         };
 
         //password
-        let psw = fields["password"];
+        let psw = user["password"];
         if (!psw.match(/[a-z]/g) && !psw.match(
             /[A-Z]/g) && !psw.match(
                 /[0-9]/g) && !psw.match(
@@ -74,18 +74,15 @@ class Form extends Component {
             formIsValid = false;
             errors["password"] = "Password is not valid";
         }
- 
-
-
         
         
         this.setState({ errors: errors });
         return formIsValid;
     }
 
-    emptyErrors = (field) => {
+    emptyErrors = (value) => {
         let errors = this.state.errors;
-        errors[field] = '';
+        errors[value] = '';
 
         this.setState({ errors });
 
@@ -100,8 +97,8 @@ class Form extends Component {
         
         
         if (formIsValid) {
-            alert("Thanks! Your friend will be very happy for the virtual flower");
-            this.props.handleSubmit(this.state.fields);
+            console.log(this.state.user);
+            this.props.handleSubmit(this.state.user);
             this.setState(this.initialState);
         } else {
             errors["form"] = "Oops! Something went wrong."
@@ -109,13 +106,8 @@ class Form extends Component {
         }
     }
 
-    showPassword() {
-        console.log("visa dig")
-        // this.setState({hidden: !this.state.hidden});
-    }
-
     render() {
-        const { fields, errors } = this.state
+        const { user, errors } = this.state
 
         return (
             <form onSubmit={this.onFormSubmit}>
@@ -128,7 +120,7 @@ class Form extends Component {
                     <input className="input"
                         type="text"
                         name="name"
-                        value={fields["name"]}
+                        value={user["name"]}
                         onChange={this.handleChange.bind(this, "name")}
                         onClick={this.emptyErrors.bind(this, "name")}
                         noValidate />
@@ -142,7 +134,7 @@ class Form extends Component {
                     <input className="input"
                         type="email"
                         name="email"
-                        value={fields["email"]}
+                        value={user["email"]}
                         onChange={this.handleChange.bind(this, "email")}
                         onClick={this.emptyErrors.bind(this, "email")}
                         noValidate />
@@ -155,7 +147,7 @@ class Form extends Component {
                     <Datepicker
                         handleChange={this.handleChange}
                         name="birthday"
-                        value={fields["birthday"]}
+                        value={user["birthday"]}
                         onClick={this.emptyErrors.bind(this, "birthday")}
                     />
                     <span className="field-error">{errors["birthday"]}</span>
@@ -174,7 +166,7 @@ class Form extends Component {
                     <input className="input"
                         type={this.state.hidden ? "password" : "text"}
                         name="password"
-                        value={fields["password"]}
+                        value={user["password"]}
                         onChange={this.handleChange.bind(this, "password")}
                         onClick={this.emptyErrors.bind(this, "password")}
                         noValidate

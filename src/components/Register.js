@@ -11,48 +11,63 @@ import c_data from '../c_data.js';
 class Register extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            user: ''
+        this.initialState = {
+            newUser: [],
+            error: "",
         };
 
+        this.state = this.initialState;
     }
 
 
-    // handle submit
     handleSubmit = user => {
         let port = c_data['port'];
 
-        this.setState({ user: [...this.state.user, user] });
+        // console.log(user.name);
+        // console.log(user);
 
-        console.log(this.state.user)
+        // this.setState({ newUser: [...this.state.newUser, user] });
+        this.setState({ newUser: [...this.state.newUser, user] }, () => {
+            console.log(this.state.newUser);
+            JSON.stringify(this.state.newUser);
+            console.log(this.state.newUser[0].name);
 
-        fetch('http://localhost:' + port + '/register', {
-            method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        })
-            .then((result) => result.json())
-            .then((info) => { console.log(info); }) //201 sucess if success
-            .catch(error => this.setState({ error, msg: "something error" }));
+            fetch('http://localhost:' + port + '/register', {
+                method: "POST",
+                body: JSON.stringify(this.state.newUser[0]),
+                headers: {
+                    'Content-type': 'application/json'
+                }
+            })
+                .then((result) => {
+                    console.log(result);
+                    result.json()
+                })
+                .then((info) => { 
+                    console.log(info); 
+
+                    // window.location = '/login';
+                    // alert("User succesfully registered!");
+                }) //201 sucess if success
+                .catch(error => this.setState({ error, msg: "something error" }));
 
 
-        window.location = '/signup';
+
+        });
+
+       
         
     }
 
     render() {
         const { user } = this.state;
 
-        console.log(this.state.user);
         return (
             <div className="container">
                 <h1>Register new user </h1>
                 <p>To be able to add reports.</p>
                 <Form handleSubmit={this.handleSubmit} user={user}/>
                 <p>
-                    OBS! Beta. Nothing works.
                 </p>
             </div>
         )

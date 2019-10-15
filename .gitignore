@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 log.md
+/_old
 
 #.env
 GENERATE_SOURCEMAP=false

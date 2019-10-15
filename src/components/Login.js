@@ -1,60 +1,97 @@
 import React, { Component } from 'react';
 
 import c_data from "../c_data.js";
+import Auth from "./Auth";
 import '../style/Form.css';
 
 
 class Login extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            email: '',
+            email:'',
             password: '',
-            token: '',
-            error: '',
+            error: ''
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+
+        this.Auth = new Auth();
     }
 
-    handleInputChange = (event) => {
-        const { value, name } = event.target;
-        this.setState({
-            [name]: value
-        });
-    }
-    
-    onSubmit = (event) => {
+    handleFormSubmit(e) {
+        e.preventDefault();
+
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        };
+
         let port = c_data['port'];
-    
-        event.preventDefault();
+        console.log(this.state);
+
+        if (this.Auth.getToken()) {
+            headers['Authorization'] = 'Bearer ' + this.Auth.getToken()
+        }
+
 
         fetch("http://localhost:" + port + "/login", {
             method: "POST",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
+            headers: headers,
+            body: JSON.stringify({
+                email: this.state.email,
+                password: this.state.password
+            })
         })
-        .then((res) => {
-            if (res.status === 200) {
-                console.log("success")
-                this.props.history.push('/'); //back to home
+            .then((res) => {
+                console.log(res);
 
-            } else {
-                const error = new Error(res.error);
-                throw error;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            this.setState({ error: 'Error logging in please try again'});
-        });
+                if (res.status === 200) {
+                    console.log("success")
+                    res.json().then((data) => {
+                        let info = data.data;
+                        console.log("set local with: ", info.token);
+
+                        this.Auth.setToken(info.token)
+                    })
+                    // window.location = '/reports';
+
+
+                } else {
+                    const error = new Error(res.error);
+                    throw error;
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                this.setState({ error: 'Error logging in please try again' });
+            })
+
+        
     }
+
+
+    handleChange(e) {
+        this.setState(
+            {
+                [e.target.name]: e.target.value
+            }
+        )
+    }
+
+    UNSAFE_componentWillMount() {
+        if (this.Auth.loggedIn())
+            window.location = "/reports";
+    }
+
+   
     render() {
         const error = this.state.error;
 
         return (
             <div className="container">
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.handleFormSubmit}>
                     <h1>Login Below!</h1>
                     <p><span className="field-error-form">{error}</span></p>
                     <legend>E-mail</legend>
@@ -62,8 +99,7 @@ class Login extends Component {
                         type="email"
                         name="email"
                         placeholder="Enter email"
-                        value={this.state.email}
-                        onChange={this.handleInputChange}
+                        onChange={this.handleChange}
                         required
                     />
                     <br />
@@ -75,20 +111,23 @@ class Login extends Component {
                         type="password"
                         name="password"
                         placeholder="Enter password"
-                        value={this.state.password}
-                        onChange={this.handleInputChange}
+                        onChange={this.handleChange}
                         required
                     />
                     <br />
                     <br />
 
                     <button type="Submit"> LOGIN </button>
-                    {/* <input type="Submit" value="Submit" /> */}
                 </form>
+                <br />
             </div>
             
         );
     }
+
+
+
 }
 
 export default Login;
+

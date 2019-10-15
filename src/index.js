@@ -10,11 +10,11 @@ import {
 
 import About from './components/About';
 import Reports from './components/Reports';
-
 import Register from './components/Register';
 import Login from './components/Login';
 
 import Notfound from './notfound';
+
 
 import './index.css';
 
@@ -34,6 +34,7 @@ const routing = (
                 <li>
                     <Link to="/login">Login</Link>
                 </li>
+
             </ul>
             <Switch>
                 <Route exact path="/" component={About} />

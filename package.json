@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "jwt-decode": "^2.2.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-markdown": "^4.2.2",
@@ -14,7 +15,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "rsync -av ./build/* deploy@159.65.27.43:/var/www/jeneljenel.me/html "
+    "deploy": "npm run build && rsync -av ./build/* deploy@159.65.27.43:/var/www/jeneljenel.me/html "
   },
   "eslintConfig": {
     "extends": "react-app"
