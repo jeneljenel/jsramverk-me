@@ -66,3 +66,7 @@ form {
     width: 80%;
     min-height: 20rem;
 }
+
+.input-hidden {
+    visibility: hidden;
+}

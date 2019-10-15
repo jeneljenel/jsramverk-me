@@ -11,11 +11,6 @@ import c_data from '../c_data.js'; //SET localhost: xxxx
 
 import '../style/Form.css';
 
-function handleLogout() {
-  let x = new Auth();
-  x.logout()
-}
-
 class Reports extends Component {
   constructor(props) {
     super(props);

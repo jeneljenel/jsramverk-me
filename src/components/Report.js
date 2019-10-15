@@ -3,7 +3,7 @@ import { Switch, Route, Link } from 'react-router-dom'
 
 
 import Auth from './Auth';
-import ReportAdmin from './ReportAdmin';
+import ReportEdit from './ReportEdit';
 
 
 
@@ -14,8 +14,9 @@ import c_data from '../c_data.js'; //SET localhost: xxxx
 class Report extends Component {
   constructor(props) {
     super(props);
+
     this.initialState = {
-      apiResponse: [],
+      report: [],
       error: "",
     };
 
@@ -29,7 +30,6 @@ class Report extends Component {
     let port = c_data['port'];
 
     fetch("http://localhost:" + port + "/reports/week/" + match.params.id, {
-    // fetch("http://localhost:1337/reports/week/" + match.params.repWeek, {
       method: "GET",
       headers: {
         'Content-type': 'application/json'
@@ -40,7 +40,7 @@ class Report extends Component {
         res.json().then(res => {
           // console.log("api res: "  , res);
           parent.setState({
-            apiResponse: res
+            report: res
           })
         })
       })
@@ -67,27 +67,28 @@ class Report extends Component {
   }
 
   render () {
-    const { apiResponse } = this.state;
+    const { report } = this.state;
     const { match } = this.props;
 
 
     // CATCH THE FIRST. WONT MAP EMPTY Value of 
-    if (!apiResponse) {
+    if (!report) {
       this.getReport();
     }
     
     const editLink = this.checkAuth();
+    console.log(report);
 
     return (
       <div>
-        <h1>{apiResponse.title}</h1>
-        <p>{apiResponse.text}</p>
+        <h1>{report.title}</h1>
+        <p>{report.text}</p>
         <br />
         <br />
         {editLink}
         <p><i>Bug! You have to click Reports to be able to fetch another report. </i></p>
         <Switch>
-          <Route path={`${match.path}/admin`} component={ReportAdmin} />
+          <Route path={`${match.path}/edit`} report={report} component={ReportEdit} />
         </Switch>
       </div>
     )

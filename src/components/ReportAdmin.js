@@ -11,8 +11,10 @@ class ReportAdmin extends Component {
         super(props);
         this.state = {
             user: '',
-            errors: ''
-        }
+            errors: '',
+            report: this.props.report
+        };
+        
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.Auth = new Auth();
@@ -53,6 +55,7 @@ class ReportAdmin extends Component {
                 console.error(err);
                 this.setState({ errors: 'Something went wrong. Try agaian' });
             })
+
     }
 
     //Do at load
@@ -80,7 +83,11 @@ class ReportAdmin extends Component {
     }
 
     render() {
-        const {errors} = this.state;
+        const { errors } = this.state;
+        // const { report } = this.props;
+
+        console.log(this.props);
+        console.log(this.state);
 
         return (
             <div>
@@ -94,7 +101,7 @@ class ReportAdmin extends Component {
                         <br />
                         <input className="input"
                             type="text"
-                            name="title"/>
+                            name="title" />
                         <br />
                         <br />
 
