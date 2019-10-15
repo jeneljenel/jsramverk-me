@@ -4,7 +4,7 @@ const port = {
 };
 
 const c_data = {
-    'port': port['onlocal']
+    'port': port['onserver']
 };
 
 export default c_data;
