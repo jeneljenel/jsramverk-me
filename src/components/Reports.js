@@ -22,14 +22,21 @@ class Reports extends Component {
     };
 
     this.state = this.initialState;
+    this.getReports = this.getReports.bind(this);
+    this.checkAuth = this.checkAuth.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.Auth = new Auth();
   }
 
 
   getReports() {
     let parent = this;
-    let port = c_data['port'];
-    let url = 'http://localhost:' + port + '/reports';
+    // let port = c_data['port'];
+    // let url = 'http://localhost:' + port + '/reports';
+    let api = c_data['me-api'];
+    let path = '/reports';
+    let url = api + path;
+    console.log(url)
 
     const headers = {
       'Content-type': 'application/json',
@@ -51,19 +58,30 @@ class Reports extends Component {
 
   //DO wen render the page - get the reports
   UNSAFE_componentWillMount() {
-      this.getReports();
+    this.setState(this.initialState);
+    this.getReports();
   }
 
   checkAuth() {
     const { match } = this.props;
       if (this.Auth.loggedIn()) {
-        console.log("du är inloggad!")
         return (
+            <>
             <li>
-              <Link to={`${match.url}/admin`}>Admin</Link>
+              <Link to={`${match.url}/admin`}>ADD NEW</Link>
             </li>
+            <li>
+              <Link onClick={this.handleLogout}>Logout</Link>
+            </li>
+            </>
         );
       }
+  }
+
+  handleLogout() {
+    this.Auth.logout();
+    this.props.history.replace('/login')
+
   }
 
   render() {
@@ -93,9 +111,6 @@ class Reports extends Component {
         <ul className="menu">
           {apiLink}
           {adminLink}
-          {/* <li>
-            <Link to={`${match.url}/admin`}>Admin</Link>
-          </li> */}
 
         </ul>
         <Switch>
@@ -104,7 +119,7 @@ class Reports extends Component {
 
           <Route path={`${match.path}/week/:id`} component={Report} />
         </Switch>
-        
+
         </div>
     )
   }

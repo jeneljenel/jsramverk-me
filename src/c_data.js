@@ -4,7 +4,8 @@ const port = {
 };
 
 const c_data = {
-    'port': port['onserver']
+    'port': port['onserver'],
+    'me-api': 'https://me-api.jeneljenel.me'
 };
 
 export default c_data;

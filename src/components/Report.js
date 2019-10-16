@@ -27,9 +27,13 @@ class Report extends Component {
   getReport() {
     let parent = this;
     let { match } = this.props;
-    let port = c_data['port'];
+    // let port = c_data['port'];
+    // let url = 'http://localhost:' + port + '/reports/week/' + match.params.id';
+    let api = c_data['me-api'];
+    let path = '/reports/week/' + match.params.id;
+    let url = api + path;
 
-    fetch("http://localhost:" + port + "/reports/week/" + match.params.id, {
+    fetch(url, {
       method: "GET",
       headers: {
         'Content-type': 'application/json'
@@ -48,6 +52,7 @@ class Report extends Component {
 
   UNSAFE_componentWillMount() {
     //Fetch report
+    this.setState(this.initialState);
     this.getReport();
 
   }
@@ -57,7 +62,6 @@ class Report extends Component {
     const { match } = this.props;
 
     if (this.Auth.loggedIn()) {
-      console.log("du är inloggad!")
       return (
         
           <Link to={`${match.url}/edit`}>
@@ -78,7 +82,6 @@ class Report extends Component {
     }
     
     const editLink = this.checkAuth();
-    console.log(report);
 
     return (
       <div>
@@ -87,7 +90,7 @@ class Report extends Component {
         <br />
         <br />
         {editLink}
-        <p><i>Bug! You have to click Reports to be able to fetch another report. </i></p>
+        <p><i>Bug! You have to click Reports to refresh the content on the page. Admin is working on it. </i></p>
         <Switch>
           <Route path={`${match.path}/edit`} report={report} component={ReportEdit} />
         </Switch>

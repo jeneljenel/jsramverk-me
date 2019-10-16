@@ -23,7 +23,13 @@ class ReportAdmin extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        const port = c_data['port'];
+        // const port = c_data['port'];
+        // let url = 'http://localhost:' + port + '/reports';
+        let api = c_data['me-api'];
+        let path = '/reports';
+        let url = api + path;
+        console.log(url)
+        
         let token = this.state.token;
 
         const headers = {
@@ -36,7 +42,7 @@ class ReportAdmin extends Component {
         let text = data.get('text');
 
 
-        fetch('http://localhost:' + port + '/reports', {
+        fetch(url, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({
@@ -47,8 +53,8 @@ class ReportAdmin extends Component {
             .then((res) => {
                 if (res.status === 201) {
                     console.log("added")
-                    // this.props.history.push('/reports'); //back to home -- have to write a props
-                    window.location = ('/reports')
+                    this.props.history.replace('/reports'); //back to home -- have to write a props
+                    // window.location = ('/reports')
                 }
             })
             .catch(err => {
@@ -62,9 +68,8 @@ class ReportAdmin extends Component {
     //Check auth
     UNSAFE_componentWillMount() {
         if (!this.Auth.loggedIn()) {
-            // this.props.history.replace('/login')
-            window.location = "/login";
-
+            this.props.history.replace('/login')
+            // window.location = "/login";
         }
         else {
             try {

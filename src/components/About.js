@@ -12,15 +12,18 @@ class Hello extends Component {
 
   callAPI() {
     let parent = this;
-    let port = c_data['port']
-    let url = 'http://localhost:' + port;
-    console.log(url);
+    // let port = c_data['port']
+    // let url = 'http://localhost:' + port;
+    let api = c_data['me-api'];
+    let path = '/';
+    let url = api + path;
+    console.log(url)
 
     const headers = {
       'Content-type': 'application/json',
     }
 
-    fetch("http://localhost:" + port, {
+    fetch(url, {
       headers: headers
     })
       .then(res => {
@@ -39,12 +42,15 @@ class Hello extends Component {
   render() {
     const about = this.state.apiResponse;
 
+    if (!about) {
+      this.callAPI();
+    }
+
     return (
         <div className="container">
           <h1>{about.title}</h1>
           <p>{about.text}</p>
-          {/* <p>Gamla about >> </p>
-          <About /> */}
+
         </div>
     )
   }

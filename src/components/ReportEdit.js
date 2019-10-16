@@ -8,7 +8,11 @@ class Report extends Component {
         super(props);
 
         this.initialState = {
-            report: [],
+            report: {
+                title: '',
+                text: '',
+                id: ''
+            },
             user: '',
             token: '',
             errors: ''
@@ -23,12 +27,19 @@ class Report extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        const port = c_data['port'];
+        // const port = c_data['port'];
+        // let url = 'http://localhost:' + port + '/reports/edit';
+        let api = c_data['me-api'];
+        let path = '/reports/edit';
+        let url = api + path;
+        console.log(url)
+
         let token = this.state.token;
 
         const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': api + '/reports/week/*',
             'x-access-token': token
         };
 
@@ -37,7 +48,7 @@ class Report extends Component {
         let id = this.state.report.id;
 
 
-        fetch('http://localhost:' + port + '/reports/edit', {
+        fetch(url, {
             method: 'PUT',
             headers: headers,
             body: JSON.stringify({
@@ -50,8 +61,7 @@ class Report extends Component {
                 console.log(res)
                 if (res.status === 201) {
                     console.log("report succesfully edit")
-                    // this.props.history.push('/reports'); //back to home -- have to write a props
-                    window.location = (`/reports/week/${id}`)
+                    this.props.history.replace(`/reports/week/${id}`); //back to report -- have to write a props
                 }
             })
             .catch(err => {
@@ -66,9 +76,13 @@ class Report extends Component {
     getReport() {
         let parent = this;
         let { match } = this.props;
-        let port = c_data['port'];
+        // let port = c_data['port'];
+        // let url = 'http://localhost:' + port + '/reports/week/' + match.params.id;
+        let api = c_data['me-api'];
+        let path = '/reports/week/' + match.params.id;
+        let url = api + path;
 
-        fetch("http://localhost:" + port + "/reports/week/" + match.params.id, {
+        fetch(url, {
             method: "GET",
             headers: {
                 'Content-type': 'application/json'
@@ -135,11 +149,9 @@ class Report extends Component {
             this.getReport();
         }
 
-        console.log(report);
-
         return (
             <div>
-                <h1>Edit reports </h1>
+                <h1>Edit report </h1>
                 <br />
                 <form onSubmit={this.handleSubmit}>
                     <span className="field-error-form">{errors["form"]}</span>

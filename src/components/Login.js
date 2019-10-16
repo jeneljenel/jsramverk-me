@@ -22,21 +22,25 @@ class Login extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
+        // let port = c_data['port'];
+        // let url = "http://localhost:" + port + "/login";
+        let api = c_data['me-api'];
+        let path = '/login';
+        let url = api + path;
+        console.log(url)
 
         const headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': url
         };
 
-        let port = c_data['port'];
-        console.log(this.state);
-
         if (this.Auth.getToken()) {
-            headers['Authorization'] = 'Bearer ' + this.Auth.getToken()
+            headers['Access-Control-Allow-Origin'] = url;
+            headers['Authorization'] = 'Bearer ' + this.Auth.getToken();
         }
 
-
-        fetch("http://localhost:" + port + "/login", {
+        fetch(url, {
             method: "POST",
             headers: headers,
             body: JSON.stringify({
@@ -51,19 +55,16 @@ class Login extends Component {
                     console.log("success")
                     res.json().then((data) => {
                         let info = data.data;
-                        console.log("set local with: ", info.token);
-
+                        // console.log("set local with: ", info.token);
                         this.Auth.setToken(info.token)
+                        this.props.history.replace('/reports');
                     })
-                    window.location = '/reports';
-
-
                 } else {
                     const error = new Error(res.error);
                     throw error;
                 }
             })
-            .catch(err => {
+            .catch((err) => {
                 console.error(err);
                 this.setState({ error: 'Error logging in please try again' });
             })
@@ -82,7 +83,7 @@ class Login extends Component {
 
     UNSAFE_componentWillMount() {
         if (this.Auth.loggedIn())
-            window.location = "/reports";
+            this.props.history.replace('/reports');
     }
 
    
