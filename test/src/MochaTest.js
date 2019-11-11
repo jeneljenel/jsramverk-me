@@ -86,5 +86,18 @@ describe("Test Me-app", () => {
 
     });
 
+    it("Test register", async function () {
+        await goToNavLink("Register");
+        await assertURL("register");
+        await assertH1("REGISTER NEW USER");
+    });
+
+    it("Test login", async function () {
+        await goToNavLink("Login");
+        await assertURL("login");
+        await assertH1("LOGIN BELOW!");
+    });
+
+
 
 });
