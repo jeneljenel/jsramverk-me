@@ -39,6 +39,11 @@ describe("Test Me-app", () => {
         assert.ok(currurl.endsWith("/" + target));
     }
 
+    async function assertH1(target) {
+        const headline = await browser.findElement(By.css("h1")).getText();
+        assert.equal(headline, target);
+    }
+
     it("Test index", async function () {
         const currurl = await browser.getCurrentUrl();
         const title = await browser.getTitle();
