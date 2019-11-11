@@ -110,7 +110,7 @@ class Form extends Component {
         const { user, errors } = this.state
 
         return (
-            <form onSubmit={this.onFormSubmit}>
+            <form onSubmit={this.onFormSubmit} id="register-form">
                 <span className="field-error-form">{errors["form"]}</span>
 
                 <fieldset>
