@@ -36,14 +36,17 @@ describe("Test Me-app", () => {
         browser.quit();
     });
 
-    // async function matchUrl(target) {
-    //     try {
-    //         const url = await browser.getCurrentUrl();
-    //         await assert.ok(url.endsWith("/" + target));
-    //     } catch (error) {
-    //         console.log("Something went wrong with matchUrl", error.message)
-    //     }
-    // }
+    async function matchUrl(target) {
+        try {
+            // const url = await browser.getCurrentUrl();
+
+            // console.log(url.endsWith())
+            assert.ok(await browser.getCurrentUrl().endsWith("/" + target));
+            // assert.ok(url.endsWith("/" + target));
+        } catch (error) {
+            console.log("Something went wrong with matchUrl: ", error.message)
+        }
+    }
 
     async function assertH1(target) {
         try {
@@ -64,28 +67,14 @@ describe("Test Me-app", () => {
     });
 
     // Test Reports
-    it("Test Reports", async () => {
-        await assertH1("REPORTS").catch(console.error)
-        const link = await browser.findElement(By.linkText("Reports"))
-        console.log(link);
-    //         await link.click();
-    //     describe("Click", async () => {
-    //         const link = await browser.findElement(By.linkText("Reports"))
-    //         await link.click();
+    it("Test click on reports", async () => {
+        const link = await browser.findElement(By.linkText("Reports"));
+        await link.click();
 
-
-    //         //test h1 title
-    //         const element = await browser.findElement(By.css("h1"));
-    //         const text = await element.getText();
-    //         await assert.equal(text, "REPORTS");
-
-    //         //test url
-    //         const url = await browser.getCurrentUrl();
-    //         await assert.ok(url.endsWith("/" + "reports"));
-
-
-    //     })
-
+        await assertH1("REPORTS").catch(console.error);
+        const url = await browser.getCurrentUrl();
+        console.log(url.endsWith());
+        assert.ok(url.endsWith("/" + "reports"));
 
 
     })
