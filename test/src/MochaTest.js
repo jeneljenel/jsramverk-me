@@ -34,6 +34,7 @@ describe("Test Me-app", () => {
         done();
     });
 
+
     function assertTitle(target) {
         browser.getTitle().then(function(title) {
             assert.equal(title, target, "== Title is the same.")
@@ -51,7 +52,7 @@ describe("Test Me-app", () => {
     it("Test reports", async function () {
         //find link and click.
         const link = await browser.findElement(By.linkText("Reports"));
-        link.click();
+        await link.click();
 
         //test url
         const currurl = await browser.getCurrentUrl();
