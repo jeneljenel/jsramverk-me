@@ -42,5 +42,11 @@ describe("Test Me-app", () => {
         assert.equal(title, "Me-Me-Me", "== title is same.");
     });
 
+    it("Test reports", async function () {
+        const currurl = await browser.getCurrentUrl();
+        const link = await browser.findElement(By.linkText("Reports"));
+        await link.click();
+        console.log("url: ", currurl);
+    })
 
 });
