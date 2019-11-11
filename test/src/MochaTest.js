@@ -38,6 +38,7 @@ describe("Test Me-app", () => {
         const url = await browser.getCurrentUrl();
         const title = await browser.getTitle();
         console.log("url: ", url, "| title: ", title);
+        assert.equal(title, "Me-Me-Me", "== title is same.");
     });
 
 });
