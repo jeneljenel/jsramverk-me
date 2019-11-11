@@ -36,7 +36,8 @@ describe("Test Me-app", () => {
 
     it("Test index", async function () {
         const url = await browser.getCurrentUrl();
-        console.log(url);
+        const title = await browser.getTitle();
+        console.log("url: ", url, "| title: ", title);
     });
 
 });
