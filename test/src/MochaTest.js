@@ -19,5 +19,14 @@ let browser;
 // Test suite
 describe("Test Me-app", () => {
 
+    beforeEach(async function () {
+        this.timeout(30000);
 
+        browser = await new Builder()
+            .forBrowser('firefox')
+            .build();
+
+        await browser.get(URL);
+
+    });
 });
