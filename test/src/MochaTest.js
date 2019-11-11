@@ -18,11 +18,11 @@ const URL = "http://192.168.1.99:3000/#!/";
 let browser;
 
 describe("Test Me-app", function() {
+
     beforeEach(function(done) {
         this.timeout(20000);
-        browser = new Builder(Firefox)
+        browser = new Builder()
             .forBrowser('firefox')
-            .setFirefoxOptions(firefoxOptions)
             .build();
 
         browser.get(URL);
@@ -34,7 +34,7 @@ describe("Test Me-app", function() {
         done();
     });
 
-    it("Test index", function(done){
+    it("Test index", function(done) {
         //check title
         browser.getTitle()
             .then(function (title) {
