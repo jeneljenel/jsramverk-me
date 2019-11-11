@@ -43,9 +43,11 @@ describe("Test Me-app", () => {
     });
 
     it("Test reports", async function () {
-        const currurl = await browser.getCurrentUrl();
+        //find link and click.
         const link = await browser.findElement(By.linkText("Reports"));
         await link.click();
+        //get content.
+        const currurl = await browser.getCurrentUrl();
         console.log("url: ", currurl);
     })
 
