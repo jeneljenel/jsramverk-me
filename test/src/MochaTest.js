@@ -35,10 +35,12 @@ describe("Test Me-app", () => {
     });
 
     it("Test index", async function () {
-        const url = await browser.getCurrentUrl();
+        const currurl = await browser.getCurrentUrl();
         const title = await browser.getTitle();
-        console.log("url: ", url, "| title: ", title);
+
+        console.log("url: ", currurl, "| title: ", title);
         assert.equal(title, "Me-Me-Me", "== title is same.");
     });
+
 
 });
