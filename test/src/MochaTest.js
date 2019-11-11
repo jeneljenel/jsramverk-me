@@ -29,4 +29,10 @@ describe("Test Me-app", () => {
         await browser.get(URL);
 
     });
+
+    afterEach(function (done) {
+        browser.quit();
+        done();
+    });
+
 });
