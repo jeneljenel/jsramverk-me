@@ -56,6 +56,12 @@ describe("Test Me-app", () => {
         assert.ok(currurl.endsWith("/" + target));
     }
 
+    async function assertH1(target) {
+        const headline = await browser.findElement(By.css("h1")).getText();
+        assert.equal(headline, target);
+    }
+
+
 
     it("Test index", function (done) {
         assertTitle("Me-Me-Me");
@@ -73,9 +79,11 @@ describe("Test Me-app", () => {
         await assertURL("reports");
 
         //test headline
-        const headline = await browser.findElement(By.css("h1")).getText();
-        assert.equal(headline, "REPORTS");
-        console.log("headline <h1> is: ", headline);
+        // const headline = await browser.findElement(By.css("h1")).getText();
+        // assert.equal(headline, "REPORTS");
+        // console.log("headline <h1> is: ", headline);
+        await assertH1("REPORTS");
+
     });
 
 
