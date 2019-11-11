@@ -51,6 +51,11 @@ describe("Test Me-app", () => {
         });
     };
 
+    async function assertURL(target) {
+        const currurl = await browser.getCurrentUrl();
+        assert.ok(currurl.endsWith("/" + target));
+    }
+
 
     it("Test index", function (done) {
         assertTitle("Me-Me-Me");
@@ -59,14 +64,13 @@ describe("Test Me-app", () => {
 
     it("Test reports", async function () {
         //find link and click.
-        // const link = await browser.findElement(By.linkText("Reports"));
-        // await link.click();
         await goToNavLink("Reports");
 
         //test url
-        const currurl = await browser.getCurrentUrl();
-        assert.ok(currurl.endsWith("/reports"));
-        console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
+        // const currurl = await browser.getCurrentUrl();
+        // assert.ok(currurl.endsWith("/reports"));
+        // console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
+        await assertURL("reports");
 
         //test headline
         const headline = await browser.findElement(By.css("h1")).getText();
