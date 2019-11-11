@@ -34,16 +34,6 @@ describe("Test Me-app", () => {
         done();
     });
 
-    async function assertURL(target) {
-        const currurl = await browser.getCurrentUrl();
-        assert.ok(currurl.endsWith("/" + target));
-    }
-
-    async function assertH1(target) {
-        const headline = await browser.findElement(By.css("h1")).getText();
-        assert.equal(headline, target);
-    }
-    
     function assertTitle(target) {
         browser.getTitle().then(function(title) {
             assert.equal(title, target, "== Title is the same.")
@@ -51,44 +41,28 @@ describe("Test Me-app", () => {
     };
 
 
+
+
     it("Test index", function (done) {
         assertTitle("Me-Me-Me");
         done();
     });
 
-    // it("Test reports", async function () {
-    //     //find link and click.
-    //     const link = await browser.findElement(By.linkText("Reports"));
-    //     await link.click();
+    it("Test reports", async function () {
+        //find link and click.
+        const link = await browser.findElement(By.linkText("Reports"));
+        link.click();
 
-    //     //test url
-    //     // const currurl = await browser.getCurrentUrl();
-    //     // assert.ok(currurl.endsWith("/reports"));
-    //     // console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
-    //     assertURL("reports");
+        //test url
+        const currurl = await browser.getCurrentUrl();
+        assert.ok(currurl.endsWith("/reports"));
+        console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
 
-    //     //test headline
-    //     const headline = await browser.findElement(By.css("h1")).getText();
-    //     console.log("headline <h1> is: ", headline);
-    //     assert.equal(headline, "REPORTS");
-    //     // assertH1("REPORTS");
-    // });
-
-    // it("Test register", async function () {
-    //     //find link and click.
-    //     const link = await browser.findElement(By.linkText("Register"));
-    //     await link.click();
-
-    //     //test url
-    //     assertURL("register");
-
-    //     //test headline
-    //     const headline = await browser.findElement(By.css("h1")).getText();
-    //     console.log("headline <h1> is: ", headline);
-    //     assert.equal(headline, "REGISTER NEW USER")
-    // })
-
-
+        //test headline
+        const headline = await browser.findElement(By.css("h1")).getText();
+        console.log("headline <h1> is: ", headline);
+        assert.equal(headline, "REPORTS");
+    });
 
 
 });
