@@ -47,10 +47,17 @@ describe("Test Me-app", () => {
         const link = await browser.findElement(By.linkText("Reports"));
         await link.click();
 
-        //get content.
+        //test url
         const currurl = await browser.getCurrentUrl();
         assert.ok(currurl.endsWith("/reports"));
-        console.log("url: ", currurl, " and it ends with /reports: ", currurl.endsWith("/reports"));
+        console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
+
+        //test headline
+        const headline = await browser.findElement(By.css("h1")).getText();
+        console.log("headline <h1> is: ", headline);
+        assert.equal(headline, "REPORTS")
     })
+
+
 
 });
