@@ -11,8 +11,7 @@ const { Builder, By } = require("selenium-webdriver");
 const Firefox = require('selenium-webdriver/firefox');
 const firefoxOptions = new Firefox.Options().headless();
 
-// const URL = "http://localhost:3000/#";
-const URL = "http://192.168.1.99:3000/#";
+const URL = "http://localhost:3000/#";
 
 let browser;
 
@@ -33,6 +32,11 @@ describe("Test Me-app", () => {
     afterEach(function (done) {
         browser.quit();
         done();
+    });
+
+    it("Test index", async function () {
+        const url = await browser.getCurrentUrl();
+        console.log(url);
     });
 
 });
