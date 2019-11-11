@@ -48,7 +48,7 @@ describe("Test Me-app", () => {
         await link.click();
         //get content.
         const currurl = await browser.getCurrentUrl();
-        console.log("url: ", currurl);
+        console.log("url: ", currurl, " and it ends with: ", currurl.endsWith());
     })
 
 });
