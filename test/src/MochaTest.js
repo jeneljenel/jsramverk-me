@@ -36,9 +36,13 @@ describe("Test Me-app", function() {
 
     it("Test index", function(done){
         //check title
-        browser.getTitle().then(function (title) {
-            assert.equal(title, "Me-Me-Me");
-        });
+        browser.getTitle()
+            .then(function (title) {
+                assert.equal(title, "Me-Me-Me");
+            })
+            .catch(function(error) {
+                console.log(error)
+            });
 
         done();
     });
