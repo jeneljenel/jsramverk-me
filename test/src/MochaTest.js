@@ -41,7 +41,15 @@ describe("Test Me-app", () => {
         });
     };
 
-
+    async function goToNavLink(target) {
+        await browser.findElement(By.linkText(target))
+        .then(async function(link) {
+            await link.click();
+        })
+        .catch(function(error) {
+            console.log(error.message);
+        });
+    };
 
 
     it("Test index", function (done) {
@@ -51,8 +59,9 @@ describe("Test Me-app", () => {
 
     it("Test reports", async function () {
         //find link and click.
-        const link = await browser.findElement(By.linkText("Reports"));
-        await link.click();
+        // const link = await browser.findElement(By.linkText("Reports"));
+        // await link.click();
+        await goToNavLink("Reports");
 
         //test url
         const currurl = await browser.getCurrentUrl();
@@ -61,8 +70,8 @@ describe("Test Me-app", () => {
 
         //test headline
         const headline = await browser.findElement(By.css("h1")).getText();
-        console.log("headline <h1> is: ", headline);
         assert.equal(headline, "REPORTS");
+        console.log("headline <h1> is: ", headline);
     });
 
 
