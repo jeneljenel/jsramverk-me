@@ -46,9 +46,11 @@ describe("Test Me-app", () => {
         //find link and click.
         const link = await browser.findElement(By.linkText("Reports"));
         await link.click();
+
         //get content.
         const currurl = await browser.getCurrentUrl();
-        console.log("url: ", currurl, " and it ends with: ", currurl.endsWith());
+        assert.ok(currurl.endsWith("/reports"));
+        console.log("url: ", currurl, " and it ends with /reports: ", currurl.endsWith("/reports"));
     })
 
 });
