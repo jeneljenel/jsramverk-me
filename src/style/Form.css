@@ -44,7 +44,7 @@ form {
 
 .field-error-form {
     color: rgba(255, 0, 0, 0.925);
-    background-color: #f34a2038;
+    background-color: rgba(243, 74, 32, 0.22);
     font-style: italic;
     font-size: 0.8rem
 }
