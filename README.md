@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/jeneljenel/jsramverk-me.svg?branch=master)](https://travis-ci.org/jeneljenel/jsramverk-me)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/?branch=master)s
 
 Learning JavaScript frameworks. Part of coarse jsramverk at BTH
 
