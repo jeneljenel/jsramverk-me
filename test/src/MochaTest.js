@@ -61,19 +61,40 @@ describe("Test Me-app", () => {
         assert.equal(headline, target);
     }
 
+    async function findElementById(target) {
+        const element = await browser.findElement(By.id(target));
+        return element;
+    }
+
+    async function findElementByName(target) {
+        const element = await browser.findElement(By.name(target));
+        return element;
+    }
+
+    async function findElementByClassName(target) {
+        const element = await browser.findElement(By.className(target));
+        return element;
+    }
+
 
     it("Test field-error color", async function() {
         await goToNavLink("Register");
         
-        const form = await browser.findElement(By.id("register-form"));
+        // const form = await browser.findElement(By.id("register-form"));
+        const form = await findElementById("register-form");
 
-        const name = await browser.findElement(By.name("name"));
+        // const name = await browser.findElement(By.name("name"));
+        const name = await findElementByName("name");
         await name.sendKeys("Not a valid name");
+        
 
-        const button = await browser.findElement(By.id("submit-form"));
+        // const button = await browser.findElement(By.id("submit-form"));
+        const button = await findElementById("submit-form");
         await button.click();
 
-        const msg = await browser.findElement(By.className("field-error-form"));
+        // const msg = await browser.findElement(By.className("field-error-form"));
+        const msg = await findElementByClassName("field-error-form");
+
         const msgtxt = await msg.getText();
         const msgcolor = await msg.getCssValue("background-color");
         await assert.equal(msgtxt, "Oops! Something went wrong.");
@@ -81,41 +102,41 @@ describe("Test Me-app", () => {
         
     });
 
-    it("Test index", function (done) {
-        assertTitle("Me-Me-Me");
-        done();
-    });
+    // it("Test index", function (done) {
+    //     assertTitle("Me-Me-Me");
+    //     done();
+    // });
 
 
-    it("Test reports", async function () {
-        //find link and click.
-        await goToNavLink("Reports");
+    // it("Test reports", async function () {
+    //     //find link and click.
+    //     await goToNavLink("Reports");
 
-        //test url
-        // const currurl = await browser.getCurrentUrl();
-        // assert.ok(currurl.endsWith("/reports"));
-        // console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
-        await assertURL("reports");
+    //     //test url
+    //     // const currurl = await browser.getCurrentUrl();
+    //     // assert.ok(currurl.endsWith("/reports"));
+    //     // console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
+    //     await assertURL("reports");
 
-        //test headline
-        // const headline = await browser.findElement(By.css("h1")).getText();
-        // assert.equal(headline, "REPORTS");
-        // console.log("headline <h1> is: ", headline);
-        await assertH1("REPORTS");
+    //     //test headline
+    //     // const headline = await browser.findElement(By.css("h1")).getText();
+    //     // assert.equal(headline, "REPORTS");
+    //     // console.log("headline <h1> is: ", headline);
+    //     await assertH1("REPORTS");
 
-    });
+    // });
 
-    it("Test register", async function () {
-        await goToNavLink("Register");
-        await assertURL("register");
-        await assertH1("REGISTER NEW USER");
-    });
+    // it("Test register", async function () {
+    //     await goToNavLink("Register");
+    //     await assertURL("register");
+    //     await assertH1("REGISTER NEW USER");
+    // });
 
-    it("Test login", async function () {
-        await goToNavLink("Login");
-        await assertURL("login");
-        await assertH1("LOGIN BELOW!");
-    });
+    // it("Test login", async function () {
+    //     await goToNavLink("Login");
+    //     await assertURL("login");
+    //     await assertH1("LOGIN BELOW!");
+    // });
 
 
 
