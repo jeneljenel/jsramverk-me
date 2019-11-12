@@ -23,6 +23,7 @@ describe("Test Me-app", () => {
 
         browser = await new Builder()
             .forBrowser('firefox')
+            .setFirefoxOptions(firefoxOptions)
             .build();
 
         await browser.get(URL);
