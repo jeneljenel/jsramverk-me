@@ -177,7 +177,7 @@ class Form extends Component {
                     <br />
                     <span className="field-error">{errors["password"]}</span>
                     <br />
-                    <button type="Submit">OK </button>
+                    <button type="Submit" id="submit-form">OK </button>
                 </fieldset>
 
                 
