@@ -77,66 +77,63 @@ describe("Test Me-app", () => {
     }
 
 
-    it("Test field-error color", async function() {
-        await goToNavLink("Register");
-        
-        // const form = await browser.findElement(By.id("register-form"));
-        const form = await findElementById("register-form");
+    it("Test index", function (done) {
+        assertTitle("Me-Me-Me");
+        done();
+    });
 
-        // const name = await browser.findElement(By.name("name"));
+
+    it("Test reports", async function () {
+        //find link and click.
+        await goToNavLink("Reports");
+
+        //test url
+        // const currurl = await browser.getCurrentUrl();
+        // assert.ok(currurl.endsWith("/reports"));
+        // console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
+        await assertURL("reports");
+
+        //test headline
+        // const headline = await browser.findElement(By.css("h1")).getText();
+        // assert.equal(headline, "REPORTS");
+        // console.log("headline <h1> is: ", headline);
+        await assertH1("REPORTS");
+
+    });
+
+    it("Test register", async function () {
+        await goToNavLink("Register");
+        await assertURL("register");
+        await assertH1("REGISTER NEW USER");
+    });
+
+    it("Test register form - field-error color", async function () {
+        await goToNavLink("Register");
+
+        // enter value in name. - is not really tested.
         const name = await findElementByName("name");
         await name.sendKeys("Not a valid name");
-        
 
-        // const button = await browser.findElement(By.id("submit-form"));
+        //submit the form.        
         const button = await findElementById("submit-form");
         await button.click();
 
-        // const msg = await browser.findElement(By.className("field-error-form"));
+        //get values from error message.
         const msg = await findElementByClassName("field-error-form");
-
         const msgtxt = await msg.getText();
         const msgcolor = await msg.getCssValue("background-color");
+
+        //assert.
         await assert.equal(msgtxt, "Oops! Something went wrong.");
         await assert.equal(msgcolor, "rgba(243, 74, 32, 0.22)");
-        
+
     });
 
-    // it("Test index", function (done) {
-    //     assertTitle("Me-Me-Me");
-    //     done();
-    // });
-
-
-    // it("Test reports", async function () {
-    //     //find link and click.
-    //     await goToNavLink("Reports");
-
-    //     //test url
-    //     // const currurl = await browser.getCurrentUrl();
-    //     // assert.ok(currurl.endsWith("/reports"));
-    //     // console.log("url: ", currurl, "| url ends with /reports: ", currurl.endsWith("/reports"));
-    //     await assertURL("reports");
-
-    //     //test headline
-    //     // const headline = await browser.findElement(By.css("h1")).getText();
-    //     // assert.equal(headline, "REPORTS");
-    //     // console.log("headline <h1> is: ", headline);
-    //     await assertH1("REPORTS");
-
-    // });
-
-    // it("Test register", async function () {
-    //     await goToNavLink("Register");
-    //     await assertURL("register");
-    //     await assertH1("REGISTER NEW USER");
-    // });
-
-    // it("Test login", async function () {
-    //     await goToNavLink("Login");
-    //     await assertURL("login");
-    //     await assertH1("LOGIN BELOW!");
-    // });
+    it("Test login", async function () {
+        await goToNavLink("Login");
+        await assertURL("login");
+        await assertH1("LOGIN BELOW!");
+    });
 
 
 
