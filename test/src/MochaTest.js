@@ -62,11 +62,30 @@ describe("Test Me-app", () => {
     }
 
 
+    it("Test field-error color", async function() {
+        await goToNavLink("Register");
+        
+        const form = await browser.findElement(By.id("register-form"));
+
+        const name = await browser.findElement(By.name("name"));
+        await name.sendKeys("Not a valid name");
+
+        const button = await browser.findElement(By.id("submit-form"));
+        await button.click();
+
+        const msg = await browser.findElement(By.className("field-error-form"));
+        const msgtxt = await msg.getText();
+        const msgcolor = await msg.getCssValue("background-color");
+        await assert.equal(msgtxt, "Oops! Something went wrong.");
+        await assert.equal(msgcolor, "rgba(243, 74, 32, 0.22)");
+        
+    });
 
     it("Test index", function (done) {
         assertTitle("Me-Me-Me");
         done();
     });
+
 
     it("Test reports", async function () {
         //find link and click.
