@@ -1,12 +1,17 @@
+Learning JavaScript frameworks. Part of coarse jsramverk at BTH
+
+[Webbprogrammering](https://www.bth.se/utbildning/program/pagwg20h/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-THIS IS SECOND REPO. Messed the old one up.
-For old commits >> [https://github.com/jeneljenel/jsramverk](old repo)
+
+## Get started
+To start the app, use `npm install` followed by `npm start`.
+
+npm install
+This command will install all modules listed as dependencies and is a first step to run the app.
 
 
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
@@ -18,8 +23,7 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the app and runs mocha tests.
 
 ### `npm run build`
 
@@ -29,13 +33,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Dependencies
-` npm install --save react-router-dom `
-
-` npm install babel-cli babel-core --save-dev `
-
-` npm install --save react-markdown `
-
-` npm install jwt-decode `
+THIS IS SECOND REPO. Messed the old one up.
+For old commits >> [old repo](https://github.com/jeneljenel/jsramverk)
