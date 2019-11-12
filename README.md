@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jeneljenel/jsramverk-me.svg?branch=master)](https://travis-ci.org/jeneljenel/jsramverk-me)
+
 Learning JavaScript frameworks. Part of coarse jsramverk at BTH
 
 [Webbprogrammering](https://www.bth.se/utbildning/program/pagwg20h/)
