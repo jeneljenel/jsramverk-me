@@ -8,6 +8,9 @@ node_js:
 
 sudo: false
 
+addons:
+    firefox: latest
+
 git:
     submodules: false
 
