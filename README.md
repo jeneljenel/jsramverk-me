@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/jeneljenel/jsramverk-me.svg?branch=master)](https://travis-ci.org/jeneljenel/jsramverk-me)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/?branch=master)s
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/badges/build.png?b=master)](https://scrutinizer-ci.com/g/jeneljenel/jsramverk-me/build-status/master)
+
 
 Learning JavaScript frameworks. Part of coarse jsramverk at BTH
 
