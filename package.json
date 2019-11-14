@@ -15,7 +15,7 @@
     "teststart": "node node_modules/http-server/bin/http-server -p 8082 me",
     "test": "npm run start & npm run mochatest",
     "mochatest": "mocha test/**/*.js",
-    "scrutinizertest": "npm run start & nyc --reporter=clover mochatest",
+    "scrutinizertest": "npm run start & nyc --reporter=clover npm run mochatest",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
