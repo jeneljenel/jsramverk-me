@@ -12,6 +12,8 @@ import About from './components/About';
 import Reports from './components/Reports';
 import Register from './components/Register';
 import Login from './components/Login';
+import ChatBox from './components/Chat';
+
 
 import Notfound from './notfound';
 
@@ -35,6 +37,9 @@ const routing = (
                 <li>
                     <Link to="/login">Login</Link>
                 </li>
+                <li>
+                    <Link to="/chat">Chat</Link>
+                </li>
 
             </ul>
             <Switch>
@@ -42,10 +47,7 @@ const routing = (
                 <Route path="/reports" component={Reports} />
                 <Route path="/register" component={Register} />
                 <Route path="/login" component={Login} />
-
-
-
-
+                <Route path="/chat" component={ChatBox} />
                 <Route component={Notfound} />
             </Switch>
         </div>
