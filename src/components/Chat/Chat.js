@@ -25,7 +25,7 @@ class Chat extends Component {
 
         this.initalState = {
             username: "",
-            avatar: "http://pngimg.com/download/26901",
+            avatar: "",
             message: "",
             messages: [],
             active: false,
@@ -42,6 +42,10 @@ class Chat extends Component {
         })
 
         this.socket.on('ENTER_CHAT', function(data) {
+            addMessage(data);
+        })
+
+        this.socket.on('EXIT_CHAT', function(data){
             addMessage(data);
         })
 
@@ -92,10 +96,23 @@ class Chat extends Component {
             this.setState({ active: true });
 
             this.socket.emit('JOIN_CHAT', {
-                author: this.state.username.concat(" | ", this.state.date),
+                author: this.state.username,
                 avatar: this.state.avatar,
                 message: "Just entered the chat! Say hello!"
             });
+        }
+
+        this.leaveChat = () => {
+            this.getDate();
+            this.getAvatar();
+
+            this.socket.emit('LEAVE_CHAT', {
+                author: this.state.username.concat(" | ", this.state.date),
+                avatar: this.state.avatar,
+                message: "Left the chat"
+            });
+
+            this.setState(this.initalState);
         }
 
 
@@ -138,10 +155,7 @@ class Chat extends Component {
                                 }
                             />
                         </ListItem>,
-                        <Divider
-                            variant="inset"
-                            key={"divider-" + index}
-                            component="li" />
+                        <Divider key={"divider-" + index} />
                     ])}
                 </List>
 
@@ -164,6 +178,7 @@ class Chat extends Component {
                     value={this.state.message}
                 />
                 <Button onClick={this.sendMessage} variant="contained">SEND</Button>
+                <Button onClick={this.leaveChat} variant="contained">LEAVE</Button>
 
             </div>
             </>
@@ -199,87 +214,6 @@ class Chat extends Component {
         </div>
         )
 
-        // if (!this.state.active) {
-        //     return (
-        //         <div className="container">
-        //             <p>Enter a nickname to join the chatroom!</p>
-        //             <TextField
-        //                 autoFocus="true"
-        //                 fullWidth
-        //                 label="Your nickname"
-        //                 id="username"
-        //                 margin="normal"
-        //                 onChange={ev => this.onChange(ev)}
-        //                 onKeyDown={ev => {
-        //                     if(ev.key === "Enter") {
-        //                         ev.preventDefault();
-        //                         this.joinChat();
-        //                     }
-        //                 }}
-        //                 variant="outlined"
-        //                 value={this.state.username}
-        //             />
-        //             <Button onClick={this.joinChat} variant="contained">JOIN</Button>
-        //         </div>
-        //     )
-        // } else {
-        //     return(  
-        //         <div className="container">
-        //             <div className="messages">
-        //                 <List>
-        //                     {this.state.messages.flatMap((message, index) => [
-        //                         <ListItem alignItems="flex-start" key={index}>
-        //                             <ListItemAvatar>
-        //                                 <Avatar
-        //                                     alt="Random pic from picsum"
-        //                                     src="https://picsum.photos/100" />
-        //                             </ListItemAvatar>
-        //                             <ListItemText
-        //                                 primary={message.author}
-        //                                 secondary={
-        //                                     <React.Fragment>
-        //                                         <Typography
-        //                                             component="span"
-        //                                             variant="body2"
-        //                                             color="textPrimary"
-        //                                         />
-        //                                         {message.message}
-        //                                     </React.Fragment>
-        //                                 }
-        //                             />
-        //                         </ListItem>,
-        //                         <Divider
-        //                             variant="inset"
-        //                             key={"divider-" + index}
-        //                             component="li" />
-        //                     ])}
-        //                 </List>
-
-        //             </div>
-        //         <div className="messageBox">
-
-        //                 <TextField
-        //                     autoFocus="true"
-        //                     fullWidth
-        //                     label="Your message"
-        //                     id="message"
-        //                     margin="normal"
-        //                     onChange={ev => this.onChange(ev)}
-        //                     onKeyDown={ ev => {
-        //                         if(ev.key === "Enter") {
-        //                             ev.preventDefault();
-        //                             this.sendMessage(ev);
-        //                         }
-        //                     }}
-        //                     variant="outlined"
-        //                     value={this.state.message}
-        //                 />
-        //                 <Button onClick={ this.sendMessage } variant="contained">SEND</Button>
-
-        //         </div> 
-        //     </div> //end container
-        //     )
-        //     }
     }
 }
 export default Chat
