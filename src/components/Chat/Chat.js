@@ -185,6 +185,8 @@ class Chat extends Component {
                 <Button className="secondaryButton" onClick={this.leaveChat} variant="contained">LEAVE</Button>
                 </span>
             </div>
+            <br />
+            <br />
             </>
         } else {
             chat = <>
@@ -205,6 +207,7 @@ class Chat extends Component {
                     value={this.state.username}
                 />
                 <Button onClick={this.joinChat} variant="contained">JOIN</Button>
+                <p />
             </>
         }
 
