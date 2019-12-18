@@ -35,7 +35,8 @@ class Chat extends Component {
         this.state = this.initalState;
         this.ref = React.createRef();
 
-        this.socket = socketIOClient(`http://localhost:${PORT}`);
+        // this.socket = socketIOClient(`http://localhost:${PORT}`); // on local
+        this.socket = socketIOClient('socket-server.jeneljenel.me');
 
         this.socket.on('RECEIVE_MESSAGE', function(data) {
             addMessage(data);
