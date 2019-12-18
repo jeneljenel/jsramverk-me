@@ -3,3 +3,17 @@
     overflow-x: hidden;
     max-height: 500px;
 }
+
+.primaryButton {
+    width: 30%;
+    float: left;
+    background-color: rgb(7, 85, 68);
+
+}
+
+.secondaryButton {
+    width: 30%;
+    float: right;
+    background-color: rgba(209, 89, 107, 0.315);
+
+}

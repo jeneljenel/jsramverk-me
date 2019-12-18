@@ -132,7 +132,8 @@ class Chat extends Component {
         let chat;
 
         if (isActive) {
-            chat = <>
+            chat =
+            <>
             <div className="messages" ref={this.ref}>
                 <List>
                     {this.state.messages.flatMap((message, index) => [
@@ -178,14 +179,15 @@ class Chat extends Component {
                     variant="outlined"
                     value={this.state.message}
                 />
-                <Button onClick={this.sendMessage} variant="contained">SEND</Button>
-                <Button onClick={this.leaveChat} variant="contained">LEAVE</Button>
-
+                <span>
+                <Button className="primaryButton" onClick={this.sendMessage} variant="contained">SEND</Button>
+                
+                <Button className="secondaryButton" onClick={this.leaveChat} variant="contained">LEAVE</Button>
+                </span>
             </div>
             </>
         } else {
             chat = <>
-            <div className="container">
                 <p>Enter a nickname to join the chatroom!</p>
                 <TextField
                     fullWidth
@@ -203,7 +205,6 @@ class Chat extends Component {
                     value={this.state.username}
                 />
                 <Button onClick={this.joinChat} variant="contained">JOIN</Button>
-            </div>
             </>
         }
 
