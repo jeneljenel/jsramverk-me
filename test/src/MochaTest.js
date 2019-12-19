@@ -11,8 +11,8 @@ const { Builder, By } = require("selenium-webdriver");
 const Firefox = require('selenium-webdriver/firefox');
 const firefoxOptions = new Firefox.Options().headless();
 
-const URL = "http://localhost:3000/#";
-
+// const URL = "http://localhost:3000/#"; //on local
+const URL = "https://jeneljenel.me/#"; //on local
 let browser;
 
 // Test suite
