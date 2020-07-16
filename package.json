@@ -4,12 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.7.2",
+    "@material-ui/core": "^4.11.0",
     "jwt-decode": "^2.2.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.3.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
@@ -42,8 +42,8 @@
     "babel-core": "^6.26.3",
     "firefox": "0.0.1",
     "http-server": "^0.11.1",
-    "mocha": "^6.2.2",
+    "mocha": "^6.2.3",
     "nyc": "^14.1.1",
-    "selenium-webdriver": "^4.0.0-alpha.5"
+    "selenium-webdriver": "^4.0.0-alpha.7"
   }
 }
