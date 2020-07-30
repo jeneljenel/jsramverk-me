@@ -29,14 +29,15 @@ class Chat extends Component {
             message: "",
             messages: [],
             active: false,
-            date: ""
+            date: "",
+            error: "",
         }
 
         this.state = this.initalState;
         this.ref = React.createRef();
 
-        // this.socket = socketIOClient(`http://localhost:${PORT}`); // on local
-        this.socket = socketIOClient('socket-server.jeneljenel.me');
+        this.socket = socketIOClient(`http://localhost:${PORT}`, { reconnect: true }); // on local
+        // this.socket = socketIOClient('socket-server.jeneljenel.me');
 
         this.socket.on('RECEIVE_MESSAGE', function(data) {
             addMessage(data);
@@ -46,15 +47,35 @@ class Chat extends Component {
             addMessage(data);
         })
 
-        this.socket.on('EXIT_CHAT', function(data){
+        this.socket.on('EXIT_CHAT', function(data) {
             addMessage(data);
         })
 
-        const addMessage = (data) => {
+        this.socket.on('RECEIVE_CHATLOG', function(data) {
+            console.log("received chatlog: " + data)
+            for (let index = 0; index < data.length; index++) {
+                addLogToMessages(data[index]);
+            }
+        })
+
+        const addLogToMessages = (data) => {
             this.setState({
                 messages: [...this.state.messages, data]
             });
             this.scrollToBottom();
+        }
+
+        const addMessage = (data) => {
+            // console.log("datan" + data);
+            this.setState({
+                messages: [...this.state.messages, data]
+            });
+            this.scrollToBottom();
+        }
+
+        this.getChatLog = () => {
+            console.log("getting chat log...")
+            this.socket.emit("GET_CHATLOG")
         }
 
         this.getDate = () => {
@@ -92,16 +113,22 @@ class Chat extends Component {
         }
 
         this.joinChat = () => {
-            this.getDate();
-            this.getAvatar();
-            this.setState({ active: true });
+            if (this.state.username) {
+                this.getDate();
+                this.getAvatar();
+                this.setState({ active: true });
 
-            this.socket.emit('JOIN_CHAT', {
-                author: this.state.username,
-                avatar: this.state.avatar,
-                message: "Just entered the chat! Say hello!"
-            });
+                this.socket.emit('JOIN_CHAT', {
+                    author: this.state.username,
+                    avatar: this.state.avatar,
+                    message: "Just entered the chat! Say hello!"
+                });
+            } else {
+                this.setState({ error: "Oops! You forgot to enter your name" });
+            }
         }
+
+
 
         this.leaveChat = () => {
             this.getDate();
@@ -163,7 +190,6 @@ class Chat extends Component {
 
             </div>
             <div className="messageBox">
-
                 <TextField
                     fullWidth
                     label="Your message"
@@ -171,7 +197,7 @@ class Chat extends Component {
                     margin="normal"
                     onChange={ev => this.onChange(ev)}
                     onKeyDown={ev => {
-                        if (ev.key === "Enter") {
+                            if (ev.key === "Enter") {
                             ev.preventDefault();
                             this.sendMessage(ev);
                         }
@@ -181,8 +207,10 @@ class Chat extends Component {
                 />
                 <span>
                 <Button className="primaryButton" onClick={this.sendMessage} variant="contained">SEND</Button>
-                
+
+                <Button className="secondaryButton" onClick={this.getChatLog} variant="contained">VIEW CHAT LOG</Button>
                 <Button className="secondaryButton" onClick={this.leaveChat} variant="contained">LEAVE</Button>
+
                 </span>
             </div>
             <br />
@@ -191,6 +219,7 @@ class Chat extends Component {
         } else {
             chat = <>
                 <p>Enter a nickname to join the chatroom!</p>
+                <p className="field-error">{this.state.error}</p>
                 <TextField
                     fullWidth
                     label="Your nickname"
@@ -206,7 +235,7 @@ class Chat extends Component {
                     variant="outlined"
                     value={this.state.username}
                 />
-                <Button onClick={this.joinChat} variant="contained">JOIN</Button>
+                <Button className="primaryButton" onClick={this.joinChat} variant="contained">JOIN</Button>
                 <p />
             </>
         }
