@@ -4,7 +4,7 @@ const port = {
 };
 
 const c_data = {
-    'port': port['onserver'],
+    'port': port['onlocal'],
     'me-api': 'https://me-api.jeneljenel.me'
 };
 
