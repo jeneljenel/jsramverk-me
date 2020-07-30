@@ -31,12 +31,12 @@ class Reports extends Component {
 
   getReports() {
     let parent = this;
-    // let port = c_data['port'];
-    // let url = 'http://localhost:' + port + '/reports';
-    let api = c_data['me-api'];
-    let path = '/reports';
-    let url = api + path;
-    console.log(url)
+    let port = c_data['port'];
+    let url = 'http://localhost:' + port + '/reports';
+    // let api = c_data['me-api'];
+    // let path = '/reports';
+    // let url = api + path;
+    // console.log(url)
 
     const headers = {
       'Content-type': 'application/json',
@@ -45,16 +45,16 @@ class Reports extends Component {
     fetch(url, {
       headers: headers
     })
-        .then(res => {
-          res.json().then(res => {
-          // console.log("api res: "  , res);
-            parent.setState({
-              apiResponse: res
-              })
-            })
-          })
-    .catch(error => this.setState({ error, isLoading: false }));
-  }
+      .then(response => {
+        response.json().then(res => {
+        console.log("api res.reports: "  , res.data);
+          parent.setState({
+            apiResponse: res.data
+            });
+          });
+        })
+      .catch(error => this.setState({ error, isLoading: false }));
+   }
 
   //DO wen render the page - get the reports
   UNSAFE_componentWillMount() {
@@ -87,20 +87,21 @@ class Reports extends Component {
   render() {
     const { match } = this.props;
     const { apiResponse} = this.state;
-    
-
     // CATCH THE FIRST. WONT MAP EMPTY Value of 
     if (!apiResponse) {
+      console.log("fetching reports");
       this.getReports();
     }
+    console.log(typeof apiResponse['reports']);
+    // const apiLink = for (const [row, index] of apiResponse['reports'] ){
+    //   return (
+    //     <li key={index}>
+    //       <Link to={`${match.url}/week/${row.id}`}> {row.title}</Link>
+    //     </li>
+    //   )
+    // })
 
-    const apiLink = apiResponse.map((row, index) => {
-      return (
-        <li key={index}>
-          <Link to={`${match.url}/week/${row.id}`}> {row.title}</Link>
-        </li>
-      )
-    })
+    const apiLink = "something wrong with the api...";
 
     const adminLink = this.checkAuth();
 

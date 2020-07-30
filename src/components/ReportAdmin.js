@@ -23,11 +23,11 @@ class ReportAdmin extends Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        // const port = c_data['port'];
-        // let url = 'http://localhost:' + port + '/reports';
-        let api = c_data['me-api'];
-        let path = '/reports';
-        let url = api + path;
+        const port = c_data['port'];
+        let url = 'http://localhost:' + port + '/reports';
+        // let api = c_data['me-api'];
+        // let path = '/reports';
+        // let url = api + path;
         console.log(url)
         
         let token = this.state.token;

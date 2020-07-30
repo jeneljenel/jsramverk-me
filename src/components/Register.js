@@ -21,11 +21,11 @@ class Register extends Component {
 
 
     handleSubmit = user => {
-        // let port = c_data['port'];
-        // let url = 'http://localhost:' + port + '/register'
-        let api = c_data['me-api']
-        let path = "/register";
-        let url = api + path;
+        let port = c_data['port'];
+        let url = 'http://localhost:' + port + '/register'
+        // let api = c_data['me-api']
+        // let path = "/register";
+        // let url = api + path;
         console.log(url);
 
         const headers = {
@@ -66,7 +66,7 @@ class Register extends Component {
                     //res.json() //run json to be able to read the data
                 })
                 .catch((error) => {
-                    console.log(error);
+                    // console.log(error);
                     this.setState({ error, msg: "something error" })
                 });
 

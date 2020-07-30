@@ -22,11 +22,11 @@ class Login extends Component {
 
     handleFormSubmit(e) {
         e.preventDefault();
-        // let port = c_data['port'];
-        // let url = "http://localhost:" + port + "/login";
-        let api = c_data['me-api'];
-        let path = '/login';
-        let url = api + path;
+        let port = c_data['port'];
+        let url = "http://localhost:" + port + "/login";
+        // let api = c_data['me-api'];
+        // let path = '/login';
+        // let url = api + path;
         console.log(url)
 
         const headers = {

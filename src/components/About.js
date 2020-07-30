@@ -12,11 +12,11 @@ class Hello extends Component {
 
   callAPI() {
     let parent = this;
-    // let port = c_data['port']
-    // let url = 'http://localhost:' + port;
-    let api = c_data['me-api'];
-    let path = '/';
-    let url = api + path;
+    let port = c_data['port']
+    let url = 'http://localhost:' + port;
+    // let api = c_data['me-api'];
+    // let path = '/';
+    // let url = api + path;
     console.log(url)
 
     const headers = {

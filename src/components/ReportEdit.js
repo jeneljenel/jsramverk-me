@@ -27,11 +27,11 @@ class Report extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // const port = c_data['port'];
-        // let url = 'http://localhost:' + port + '/reports/edit';
-        let api = c_data['me-api'];
-        let path = '/reports/edit';
-        let url = api + path;
+        const port = c_data['port'];
+        let url = 'http://localhost:' + port + '/reports/edit';
+        // let api = c_data['me-api'];
+        // let path = '/reports/edit';
+        // let url = api + path;
         console.log(url)
 
         let token = this.state.token;
@@ -39,7 +39,8 @@ class Report extends Component {
         const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': api + '/reports/week/*',
+            // 'Access-Control-Allow-Origin': api + '/reports/week/*', 
+            'Access-Control-Allow-Origin': 'http://localhost:' + port + '/reports/*', //on local
             'x-access-token': token
         };
 

@@ -27,11 +27,11 @@ class Report extends Component {
   getReport() {
     let parent = this;
     let { match } = this.props;
-    // let port = c_data['port'];
-    // let url = 'http://localhost:' + port + '/reports/week/' + match.params.id';
-    let api = c_data['me-api'];
-    let path = '/reports/week/' + match.params.id;
-    let url = api + path;
+    let port = c_data['port'];
+    let url = 'http://localhost:' + port + '/reports/week/' + match.params.id;
+    // let api = c_data['me-api'];
+    // let path = '/reports/week/' + match.params.id;
+    // let url = api + path;
 
     fetch(url, {
       method: "GET",
@@ -41,7 +41,7 @@ class Report extends Component {
       })
 
       .then(res => {
-        res.json().then(res => {
+        res.json().then(res => {  
           // console.log("api res: "  , res);
           parent.setState({
             report: res
