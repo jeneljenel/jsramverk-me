@@ -10,6 +10,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1",
+    "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0"
   },
   "scripts": {
@@ -41,7 +42,7 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "firefox": "0.0.1",
-    "http-server": "^0.11.1",
+    "http-server": "^0.12.3",
     "mocha": "^6.2.3",
     "nyc": "^14.1.1",
     "selenium-webdriver": "^4.0.0-alpha.7"
